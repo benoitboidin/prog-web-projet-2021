@@ -1,17 +1,41 @@
-<form action="{cible}" method="post">
-	<fieldset>
-		<legend>Identification</legend>
-		<p>
-			<label for="id_log">Login</label> :
-			<input type="text" id="id_log" name="login" />
-		</p>
-		<p>
-			<label for="id_pwd">Mot de passe</label> :
-			<input type="password" id="id_pwd" name="passwd" />
-		</p>
-		<p>
-			<label for="id_val"></label>
-			<input type="submit" id="id_val" value="Valider" />
-		</p>
-	</fieldset>
-</form>
+<section id="fh5co-hero" class="js-fullheight" style="background-image: url(images/hero_bg.jpg);" data-next="yes">
+	<div class="fh5co-overlay"></div>
+	<div class="container">
+		<div class="fh5co-intro js-fullheight">
+			<div class="fh5co-intro-text">
+				<!-- 
+					INFO:
+					Change the class to 'fh5co-right-position' or 'fh5co-center-position' to change the layout position
+					Example:
+					<div class="fh5co-right-position">
+				-->
+				<div class="fh5co-left-position">
+					<h2 class="animate-box">Connection.</h2>
+					<form action="{cible}" method="post">
+						<fieldset>
+							<legend>Entrez vos identifiants</legend>
+							<p>
+								<label for="id_log">Login</label> :
+								<input class="form-control" type="text" id="id_log" name="login" />
+							</p>
+							<p>
+								<label for="id_pwd">Mot de passe</label> :
+								<input class="form-control" type="password" id="id_pwd" name="passwd" />
+							</p>
+							<p>
+								<label for="id_val"></label>
+								<input class="form-control" type="submit" id="id_val" value="Valider" />
+							</p>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="fh5co-learn-more animate-box">
+		<a href="#" class="scroll-btn">
+			<span class="text">Explorer</span>
+			<span class="arrow"><i class="icon-chevron-down"></i></span>
+		</a>
+	</div>
+</section>

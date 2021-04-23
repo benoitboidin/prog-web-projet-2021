@@ -1,9 +1,5 @@
 <?php
-	include("entete.inc.html");
-	//require("connect.inc.php");
-	
-	echo "<h1>Accueil</h1>";
-	echo'<li><a href="connexion.php">Se connecter</a></li><br/>';
+
 /*	
 	try{
 		//Connexion
@@ -17,6 +13,26 @@
 		echo "<p>Erreur : ".$erreur->getMessage()."</p>\n";
 	}
 */
-	
-	include("pied.inc.html");
+
+	// Ouverture de la session. 
+	session_start();
+	// Inclusion du haut de la page (Menu etc...)
+    include "entete.inc.html";
+    include "menu.inc.html";
+    include "accueil.inc.html";
+
+    // Test pour l'affichage MVC.
+    $liste = array("Limas", "Montléans", "Crept");
+
+    // Utilisation du template. 
+    require'template.class.php';
+    $tpl = new Template("sites.tpl.html");
+	$tpl->set_filenames(array("site" => "sites.tpl.html"));
+
+	foreach ($liste as $val){
+		$tpl->assign_block_vars("unite", array("nom_site" => $val));
+	}
+	$tpl->pparse("site");
+
+    include "pied.inc.html";
 ?>
