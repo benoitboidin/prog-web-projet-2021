@@ -16,10 +16,16 @@
 		//echo"<p>Connexion réussie.</p>\n";
 	
 		//ajouter les requêtes
-		$req="SELECT nomsite FROM site";
-		$req_img="SELECT image FROM site";
-		//$liste = new Requete($c,$req,$req2);
-		$liste = new Requete($c, $req, $req_img);
+		$req="SELECT nomsite, image FROM site";
+		
+		// $liste = new Requete($c,$req);
+		 // $liste2 = new Requete($c,$req2);
+		// $liste->executer();
+		 // $liste2->executerImg();
+		// $liste->afficherSite();
+		 // $liste2->afficherSite();
+		
+		$liste = new Requete($c,$req);
 		$liste->executer();
 		$liste->afficherSite();
 		
