@@ -17,14 +17,11 @@
 	
 		//ajouter les requêtes
 		$req="SELECT nomsite FROM site";
-		$req2="SELECT image FROM site";
+		$req_img="SELECT image FROM site";
 		//$liste = new Requete($c,$req,$req2);
-		$liste = new Requete($c,$req);
-		$liste2 = new Requete($c,$req2);
+		$liste = new Requete($c, $req, $req_img);
 		$liste->executer();
-		$liste2->executerImg();
 		$liste->afficherSite();
-		$liste2->afficherSite();
 		
 	} catch(PDOException $erreur) {
 		echo "<p>Erreur : ".$erreur->getMessage()."</p>\n";
