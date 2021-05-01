@@ -3,13 +3,11 @@
 				<div class="row row-bottom-padded-md">
 					<div class="col-md-3 col-sm-6 col-xs-12 animate-box">
 						<div class="fh5co-footer-widget">
-							<h3>Beau</h3>
+							<h3>Profil</h3>
 							<ul class="fh5co-links">
-								<li><a href="#">On</a></li>
-								<li><a href="#">verra</a></li>
-								<li><a href="#">plus</a></li>
-								<li><a href="#">tard</a></li>
-								<li><a href="#">:)</a></li>
+								<li><a href="#">Inscription</a></li>
+								<li><a href="connexion.php">Connexion</a></li>
+								<li><a href="deconnexion.php">Déconnexion</a></li>
 							</ul>
 						</div>
 					</div>
@@ -53,14 +51,26 @@
 					</div>
 
 				</div>
-				
+
 			</div>
 			<div class="fh5co-copyright animate-box">
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12">
-							<p class="fh5co-left"><small>&copy; 2016 <a href="index.html">Guide</a> free html5. All Rights Reserved.</small></p>
-							<p class="fh5co-right"><small class="fh5co-right">Designed by <a href="http://freehtml5.co" target="_blank">FREEHTML5.co</a> Demo Images: <a href="http://unsplash.com" target="_blank">Unsplash</a></small></p>
+							<p class="fh5co-left">
+								<small>&copy; 2016
+									<a href="index.html">Guide</a>
+									free html5. All Rights Reserved.
+								</small>
+							</p>
+							<p class="fh5co-right">
+								<small class="fh5co-right">
+									Designed by
+									<a href="http://freehtml5.co" target="_blank">FREEHTML5.co</a>
+									Demo Images:
+									<a href="http://unsplash.com" target="_blank">Unsplash</a>
+								</small>
+							</p>
 						</div>
 					</div>
 				</div>
@@ -70,7 +80,7 @@
 	</div>
 	<!-- END #fh5co-page -->
 
-	
+
 	<!-- jQuery -->
 	<script src="js/jquery.min.js"></script>
 	<!-- jQuery Easing -->
@@ -89,10 +99,10 @@
 	<!-- Main JS (Do not remove) -->
 	<script src="js/main.js"></script>
 
-	<!-- 
+	<!--
 	INFO:
-	jQuery Cookie for Demo Purposes Only. 
-	The code below is to toggle the layout to boxed or wide 
+	jQuery Cookie for Demo Purposes Only.
+	The code below is to toggle the layout to boxed or wide
 	-->
 	<script src="js/jquery.cookie.js"></script>
 	<script>
@@ -105,18 +115,20 @@
 			$('a[data-layout="boxed"]').click(function(event){
 				event.preventDefault();
 				$.cookie('layoutCookie', 'boxed', { expires: 7, path: '/'});
-				$('body').addClass($.cookie('layoutCookie')); // the value is boxed.
+				$('body').addClass($.cookie('layoutCookie'));
+				// the value is boxed.
 			});
 
 			$('a[data-layout="wide"]').click(function(event){
 				event.preventDefault();
-				$('body').removeClass($.cookie('layoutCookie')); // the value is boxed.
-				$.removeCookie('layoutCookie', { path: '/' }); // remove the value of our cookie 'layoutCookie'
+				$('body').removeClass($.cookie('layoutCookie'));
+				// the value is boxed.
+				$.removeCookie('layoutCookie', { path: '/' });
+				// remove the value of our cookie 'layoutCookie'
 			});
 		});
 	</script>
-	
+
 
 	</body>
 </html>
-
