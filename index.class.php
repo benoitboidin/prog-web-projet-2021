@@ -52,4 +52,42 @@
 			$tpl->pparse("infos"); // Ça plante ici.
 		}
 	}
+
+	class Menu {
+		public function afficherMenu(){
+			/*
+			J'ai essayé d'utiliser un template pour faire apparaitre des
+			boutons différents en fonction de si l'utilisateur est
+			connecté ou non.
+			*/
+				if(!isset($_SESSION[login])){
+					//Utilisateur non connecté.
+					$bouton = 'Connexion';
+					$href = 'connexion.php';
+					$bouton2 = 'Inscription';
+					$href2 = '#';
+					$gab = new Template("./");
+					$gab->set_filenames(array("menu" => "menu.tpl.html"));
+					$gab->assign_vars(array("bouton"=>$bouton,
+																	"href"=>$href,
+																	"bouton2"=>$bouton2,
+																	"href2"=>$href2));
+					$gab->pparse("menu");
+				}
+				else{
+					$//Utilisateur connecté.
+					$bouton = 'Connecté';
+					$href = '#';
+					$bouton2 = 'Déconnexion';
+					$href2 = 'deconnexion.php';
+					$gab = new Template("./");
+					$gab->set_filenames(array("menu" => "menu.tpl.html"));
+					$gab->assign_vars(array("bouton"=>$bouton,
+																	"href"=>$href,
+																	"bouton2"=>$bouton2,
+																	"href2"=>$href2));
+					$gab->pparse("menu");
+				}
+		}
+	}
 ?>

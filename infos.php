@@ -1,11 +1,12 @@
 <?php
-// Ouverture de la session.
-session_start();
-// Inclusion du haut de la page (Menu etc...)
-include "entete.inc.html";
-include "menu.inc.html";
-require("connect.inc.php");
-require("index.class.php");
+	// Ouverture de la session.
+	session_start();
+	// Inclusion du haut de la page (Menu etc...)
+	include "entete.inc.html";
+	require("index.class.php");
+	$menu = new Menu();
+	$menu->afficherMenu();
+	require("connect.inc.php");
 
   try{
 		//Connexion à la BDD.
