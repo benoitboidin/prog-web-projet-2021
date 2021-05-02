@@ -1,17 +1,20 @@
-<section id="fh5co-hero" class="no-js-fullheight" style="background-image: url(images/full_image_2.jpg);" data-next="yes">
+<!-- BEGIN info -->
+<section id="fh5co-hero" class="no-js-fullheight"
+style="background-image: url(image-site/{info.image});" data-next="yes">
 	<div class="fh5co-overlay"></div>
 	<div class="container">
 		<div class="fh5co-intro no-js-fullheight">
 			<div class="fh5co-intro-text">
 				<!--
 					INFO:
-					Change the class to 'fh5co-right-position' or 'fh5co-center-position' to change the layout position
+					Change the class to 'fh5co-right-position' or 'fh5co-center-position'
+					to change the layout position
 					Example:
 					<div class="fh5co-right-position">
 				-->
 				<div class="fh5co-center-position">
-					<h2 class="animate-box">{nomsite}</h2>
-					<h3 class="animate-box">{localisation}</h3>
+					<h2 class="animate-box">{info.nom_site}</h2>
+					<h3 class="animate-box">{info.localisation}</h3>
 
 				</div>
 			</div>
@@ -24,7 +27,6 @@
 		</a>
 	</div>
 </section>
-<!-- END #fh5co-hero -->
 
 <div id="fh5co-faqs">
 	<div class="container">
@@ -38,14 +40,15 @@
 				<ul class="fh5co-faq-list">
 					<li class="animate-box">
 						<h2>Niveau</h2>
-						<p>{niveau}</p>
+						<p>{info.niveau}</p>
 					</li>
           <li class="animate-box">
 						<h2>Nombre de voies</h2>
-						<p>{nbvoies}</p>
+						<p>{info.nbvoies}</p>
 					</li>
 				</ul>
 			</div>
 		</div>
 	</div>
 </div>
+<!-- END info -->

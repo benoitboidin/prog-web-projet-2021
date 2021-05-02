@@ -43,7 +43,7 @@
 		$c->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 		//Exécution et affichage des requêtes.
-		$req="SELECT nomsite, image FROM site";
+		$req="SELECT idsite, nomsite, image FROM site";
 		$liste = new Requete($c,$req);
 		$liste->executer();
 		$liste->afficherSite();
