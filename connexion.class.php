@@ -5,7 +5,8 @@ class ID {
 	private $login = "antoine";
 	private $passwd = "test";
 
-	/* La fonction retourne :
+	/*
+	La fonction retourne :
 		- "NULL" si l'utilisateur a oublié un champ.
 		- "echec" si les logs ne correspondent pas.
 		- "OK" si la connexion a réussi.
@@ -13,34 +14,44 @@ class ID {
 
 	public function Verif($param_login,$param_passwd){
 
-		//Vérification des champs.
 		if (!empty($param_login) and !empty($param_passwd)) {
-		$login = $param_login;
-		$passwd = $param_passwd;
+			$login = $param_login;
+			$passwd = $param_passwd;
 
-		//Connexion à la base de données.
-		$connexion = mysqli_connect("localhost", "root", "root");
-		$connexion->set_charset("utf8");
-			mysqli_select_db($connexion, "projet_db");
+			//Connexion à la base de données.
+			$connexion = mysqli_connect("localhost", "root", "root");
+			$connexion->set_charset("utf8");
+			mysqli_select_db($connexion, "escalade-db");
 
-			//Requête de vérification de la connexion.
-			$req = 'SELECT * FROM UTILISATEUR WHERE pseudo="'.$login.'" AND mdp="'.$passwd.'";';
+			/*
+			//Vérification de la connexion à la BDD.
+			if ($connexion->connect_error) {
+			  die("DB connection failed: " . $conn->connect_error);
+			}
+			else {
+				echo 'DB connection OK.';
+			}
+			*/
+
+			//Requête.
+			$req = 'SELECT *
+							FROM grimpeur
+							WHERE login="'.$login.'" AND passwd="'.$passwd.'";';
 			$res = mysqli_query($connexion, $req);
 
-			//Stockage des variables de session.
+			//Si les identifiants sont bons.
 			if (mysqli_num_rows($res)==1){
-				$_SESSION['pseudo'] = $pseudo;
-				$_SESSION['mdp'] = $passwd;
+				$_SESSION['login'] = $login;
+				$_SESSION['passwd'] = $passwd;
 				$utilisateur = mysqli_fetch_array($res);
-				$_SESSION['id'] = $utilisateur['IdUser'];
+				$_SESSION['id'] = $utilisateur['idgrimpeur'];
 				return("OK");
 			}
 			else{
 				//Si l'utilisateur s'est trompé.
 				return("echec");
 			}
-
-		mysqli_close($connexion);
+			mysqli_close($connexion);
 		}
 		else {
 			//Si l'utilisateur n'a pas tout rempli.

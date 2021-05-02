@@ -1,49 +1,44 @@
 <?php
 session_start();
-
 include("entete.inc.html");
 include("menu.inc.html");
 require("template.class.php");
 require("connexion.class.php");
 
 $id = new ID();
-/*
+
+//Tentative de connexion.
 if (isset($_POST["login"])) {
-	if ($id->Verif($_POST["login"], $_POST["passwd"])){
-		echo "<p>Identifiants corrects !</p>";
-		$_SESSION["login"] = $_POST["login"];
-		$_SESSION["passwd"] = $_POST["passwd"];
-	} else
-		echo "<p>Login ou mot de passe incorrect</p>";
-	echo "<p><a href=\"" . $_SERVER["PHP_SELF"] . "\">Retour</a></p>";
-*/
 
-	if (isset($_POST["login"])) {
-		if ($id->Verif($_POST["login"], $_POST["passwd"])=="OK"){
-			echo "<p>Identifiants corrects !</p>";
-			$_SESSION["login"] = $_POST["login"];
-			$_SESSION["passwd"] = $_POST["passwd"];
-		} else
-			echo "<p>Login ou mot de passe incorrect</p>";
-		echo "<p><a href=\"" . $_SERVER["PHP_SELF"] . "\">Retour</a></p>";
+	//On vérifie les identifiants.
+	$id->Verif($_POST["login"], $_POST["passwd"]);
 
-} elseif (!isset($_SESSION["login"])) {
-	$gab = new Template("./");
-	$gab->set_filenames(array("form" => "connexionform.tpl.html"));
-	$gab->assign_vars(array("cible"=>$_SERVER["PHP_SELF"]));
-	$gab->pparse("form");
-} else {
-	include 'connexionform.tpl.html';
-	/*
-// Traitement
-	if ($id->verif($_SESSION["login"], $_SESSION["passwd"])) {
-		echo "<p>Session OK</p>";
-// Exercice 4
-		if (!isset($_GET["action"])) {
-			echo'<p><a href="index.php">Retour à l\'accueil</a></p>';
+	if (isset($_SESSION["login"])){
+		//Connexion réussie.
+		header("Location:index.php");
+
+	} else {
+		//Connexion échouée.
+		$message = 'Identifiants inconnus : veuillez essayer à nouveau.';
+		$gab = new Template("./");
+		$gab->set_filenames(array("form" => "connexionform.tpl.html"));
+		$gab->assign_vars(array("message"=>$message));
+		$gab->pparse("form");
 		}
 	}
-	*/
+
+// Si l'utilisateur n'est pas connecté.
+elseif (!isset($_SESSION["login"])) {
+	$message = 'Veuillez entrer vos identifiants.';
+	$gab = new Template("./");
+	$gab->set_filenames(array("form" => "connexionform.tpl.html"));
+	$gab->assign_vars(array("message"=>$message));
+	$gab->pparse("form");
+	
+}
+
+else {
+	header("Location:index.php");
 }
 
 include("pied.inc.html");

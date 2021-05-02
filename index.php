@@ -7,6 +7,35 @@
 	include "accueil.inc.html";
 	require("connect.inc.php");
 	require("index.class.php");
+	//require("template.class.php");
+
+	/*
+	J'ai essayé d'utiliser un template pour faire apparaitre des
+	boutons différents en fonction de si l'utilisateur est
+	connecté ou non, mais ç plante complètement quand j'inclu
+	le moteur de templates.
+
+		if(!isset($_SESSION[login])){
+			//Pas de connexion.
+			$boutons = array('Connexion', 'Inscription');/*
+			$gab = new Template("./");
+			$gab->set_filenames(array("menu" => "menu.tpl.html"));
+			foreach ($boutons as $ligne){
+				$tpl->assign_block_vars("ligne.bouton",
+																array("bouton" => $ligne[0],
+																"bouton2" => $ligne[1]));
+				}
+			$gab->pparse("menu");
+		}
+		else{
+			//Connecté.
+			$bouton = 'Déconnexion';
+			$bouton2 = '';
+			$gab = new Template("./");
+			$gab->set_filenames(array("menu" => "menu.tpl.html"));
+			$gab->assign_vars(array("bouton"=>$bouton, "bouton2"=>$bouton2));
+			$gab->pparse("menu");
+		}*/
 
 	try{
 		//Connexion à la BDD.
