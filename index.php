@@ -12,7 +12,7 @@
 	/*
 	J'ai essayé d'utiliser un template pour faire apparaitre des
 	boutons différents en fonction de si l'utilisateur est
-	connecté ou non, mais ç plante complètement quand j'inclu
+	connecté ou non, mais ça plante complètement quand j'inclue
 	le moteur de templates.
 
 		if(!isset($_SESSION[login])){
