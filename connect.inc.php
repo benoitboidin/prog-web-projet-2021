@@ -1,6 +1,6 @@
 <?php // connect.inc.php
 	$host = "localhost";
-	$login="root";
+	$identifiant="root";
 	$password="root";
 	$dbname="escalade-db";
 ?>

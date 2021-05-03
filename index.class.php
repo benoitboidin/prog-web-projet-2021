@@ -65,7 +65,7 @@
 					$bouton = 'Connexion';
 					$href = 'connexion.php';
 					$bouton2 = 'Inscription';
-					$href2 = '#';
+					$href2 = 'inscription.php';
 					$gab = new Template("./");
 					$gab->set_filenames(array("menu" => "menu.tpl.html"));
 					$gab->assign_vars(array("bouton"=>$bouton,

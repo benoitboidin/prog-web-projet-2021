@@ -12,7 +12,7 @@
 
 	try{
 		//Connexion à la BDD.
-		$c = new PDO("mysql:host=$host;dbname=$dbname", $login, $password);
+		$c = new PDO("mysql:host=$host;dbname=$dbname", $identifiant, $password);
 		$c->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 		//Exécution et affichage des requêtes.

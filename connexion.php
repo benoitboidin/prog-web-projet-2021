@@ -2,6 +2,10 @@
 session_start();
 include("entete.inc.html");
 include("menu.inc.html");
+//faut changer le menu mais ca marche pas jcomprends pas comment on fait
+// require("index.class.php");
+// $menu = new Menu();
+// $menu->afficherMenu();
 require("template.class.php");
 require("connexion.class.php");
 

@@ -2,8 +2,8 @@
 
 class ID {
 
-	private $login = "antoine";
-	private $passwd = "test";
+	private $login;
+	private $passwd;
 
 	/*
 	La fonction retourne :
