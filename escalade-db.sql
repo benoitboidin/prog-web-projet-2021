@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 03, 2021 at 05:25 PM
+-- Generation Time: May 04, 2021 at 06:09 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.1
 
@@ -30,8 +30,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `grimpeur` (
   `idgrimpeur` int(11) NOT NULL,
-  `login` text NOT NULL,
-  `passwd` text NOT NULL
+  `login` varchar(12) NOT NULL,
+  `passwd` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -39,9 +39,34 @@ CREATE TABLE `grimpeur` (
 --
 
 INSERT INTO `grimpeur` (`idgrimpeur`, `login`, `passwd`) VALUES
-(1, 'ben', 'ben'),
-(2, 'antoine', 'mdpantoine'),
-(3, 'michel', 'test');
+(1, 'Antoine', 'mdpantoine'),
+(3, 'michel', 'test'),
+(4, 'ben', 'ben'),
+(6, 'bruno', 'mars'),
+(7, 'jean michel', 'aaa');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `message`
+--
+
+CREATE TABLE `message` (
+  `idmessage` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `contenu` varchar(200) NOT NULL,
+  `idsite` int(11) NOT NULL,
+  `idgrimpeur` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `message`
+--
+
+INSERT INTO `message` (`idmessage`, `date`, `contenu`, `idsite`, `idgrimpeur`) VALUES
+(1, '2021-05-04', 'Très bon site !', 2, 1),
+(2, '2021-05-04', 'J\'adore !', 2, 4),
+(3, '2021-05-04', 'Excellent pour tout niveau', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -64,7 +89,7 @@ CREATE TABLE `site` (
 --
 
 INSERT INTO `site` (`idsite`, `nomsite`, `localisation`, `niveau`, `nbvoies`, `image`, `idype`) VALUES
-(1, 'Curis', 'Curis-au-Mont-d\'Or ', '3c/6b+', 26, 'curis-au-mont-d-or.jpg', 1),
+(1, 'Curis', 'Curis-au-Mont-d\'Or ', '3c/6b+', 26, 'curis.jpg', 1),
 (2, 'La croix du Ban', 'Pollionnay', '3c/6c', 60, 'la-croix-du-ban.jpg', 1),
 (3, 'Limas, Buissante', 'Limas', '4b/7a', 32, 'limas.jpg', 1),
 (4, 'Lyon - Quais du Rhône', 'Lyon', '4a/7b', 62, 'lyon.jpg', 2),
@@ -84,6 +109,26 @@ INSERT INTO `site` (`idsite`, `nomsite`, `localisation`, `niveau`, `nbvoies`, `i
 (18, 'Rochers du Ranc', 'Presles & Choranche', '6b/6b', 3, 'rochers-du-ranc.jpg', 3),
 (19, 'Tina Dalle', 'Presles, St-André-en-Royans', '3a/8b', 51, 'tina-dalle.jpg', 3);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `type`
+--
+
+CREATE TABLE `type` (
+  `idtype` int(11) NOT NULL,
+  `nomtype` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `type`
+--
+
+INSERT INTO `type` (`idtype`, `nomtype`) VALUES
+(1, 'Site sportif'),
+(2, 'Site de bloc'),
+(3, 'Terrain d\'aventure');
+
 --
 -- Indexes for dumped tables
 --
@@ -95,11 +140,25 @@ ALTER TABLE `grimpeur`
   ADD PRIMARY KEY (`idgrimpeur`);
 
 --
+-- Indexes for table `message`
+--
+ALTER TABLE `message`
+  ADD PRIMARY KEY (`idmessage`),
+  ADD KEY `idgrimpeur` (`idgrimpeur`),
+  ADD KEY `idsite` (`idsite`);
+
+--
 -- Indexes for table `site`
 --
 ALTER TABLE `site`
   ADD PRIMARY KEY (`idsite`),
   ADD KEY `idype` (`idype`);
+
+--
+-- Indexes for table `type`
+--
+ALTER TABLE `type`
+  ADD PRIMARY KEY (`idtype`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -112,10 +171,39 @@ ALTER TABLE `grimpeur`
   MODIFY `idgrimpeur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT for table `message`
+--
+ALTER TABLE `message`
+  MODIFY `idmessage` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `site`
 --
 ALTER TABLE `site`
   MODIFY `idsite` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `type`
+--
+ALTER TABLE `type`
+  MODIFY `idtype` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `message`
+--
+ALTER TABLE `message`
+  ADD CONSTRAINT `message_ibfk_1` FOREIGN KEY (`idsite`) REFERENCES `site` (`idsite`),
+  ADD CONSTRAINT `message_ibfk_2` FOREIGN KEY (`idgrimpeur`) REFERENCES `grimpeur` (`idgrimpeur`);
+
+--
+-- Constraints for table `site`
+--
+ALTER TABLE `site`
+  ADD CONSTRAINT `site_ibfk_1` FOREIGN KEY (`idype`) REFERENCES `type` (`idtype`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
