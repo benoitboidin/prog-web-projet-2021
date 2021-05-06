@@ -11,15 +11,12 @@
 
 	//Enregistrement d'un commentaire.
 	try{
-		$c = new PDO("mysql:host=$host;dbname=$dbname", $identifiant, $password);
-		$c->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
 		$req='INSERT INTO message(date, contenu, idsite, idgrimpeur)
 					VALUES ("'.date("Y-m-d").'",
 									"'.$_POST["contenu"].'",
 									'.$_POST["site"].',
 									'.$_POST["grimpeur"].');';
-		$liste = new Requete($c,$req);
+		$liste = new Requete($req);
 		$liste->executer();
 
 	} catch(PDOException $erreur) {
@@ -36,7 +33,7 @@
 		$req="SELECT nomsite, localisation, niveau, nbvoies, image
           FROM site
           WHERE idsite=".$_GET["site"].";";
-		$liste = new Requete($c,$req);
+		$liste = new Requete($req);
 
   	$liste->executer();
 		$liste->afficherInfos();
@@ -56,7 +53,7 @@
 					ON grimpeur.idgrimpeur = message.idgrimpeur
 					WHERE message.idsite = ".$_GET["site"].";";
 
-		$liste2 = new Requete($c,$req2);
+		$liste2 = new Requete($req2);
 
   	$liste2->executer();
 		$liste2->afficherCom();
@@ -67,8 +64,6 @@
 
 	$com = new Requete("", "");
 	$com->afficherFormCom();
-
-
 
   include "pied.inc.html";
 ?>

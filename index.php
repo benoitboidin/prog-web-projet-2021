@@ -12,11 +12,12 @@
 
 	//Affichage de la grille des sites.
 	try{
+		/*
 		$c = new PDO("mysql:host=$host;dbname=$dbname", $identifiant, $password);
 		$c->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+		*/
 		$req="SELECT idsite, nomsite, image FROM site";
-		$liste = new Requete($c,$req);
+		$liste = new Requete($req);
 		$liste->executer();
 		$liste->afficherSite();
 

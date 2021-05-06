@@ -24,7 +24,7 @@
 			//Connexion échouée.
 			$message = 'Identifiants inconnus : veuillez essayer à nouveau.';
 			$gab = new Template("./");
-			$gab->set_filenames(array("form" => "connexionform.tpl.html"));
+			$gab->set_filenames(array("form"=>"connexionform.tpl.html"));
 			$gab->assign_vars(array("message"=>$message));
 			$gab->pparse("form");
 			}
@@ -34,7 +34,7 @@
 	elseif (!isset($_SESSION["login"])) {
 		$message = 'Veuillez entrer vos identifiants.';
 		$gab = new Template("./");
-		$gab->set_filenames(array("form" => "connexionform.tpl.html"));
+		$gab->set_filenames(array("form"=>"connexionform.tpl.html"));
 		$gab->assign_vars(array("message"=>$message));
 		$gab->pparse("form");
 

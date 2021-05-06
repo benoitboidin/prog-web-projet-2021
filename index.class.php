@@ -3,29 +3,24 @@
 	require("template.class.php");
 	require("connect.inc.php");
 
+
 	class Requete {
 		private $pdo;
 		private $req;
 		private $data;
 
-		function __construct($param_pdo, $param_req) {
-			$this->pdo = $param_pdo;
+		function __construct($param_req) {
 			$this->req = $param_req;
 		}
 
 		//Préparation de la requête.
 		public function executer() {
-			/*
 
-			Il faudrait mettre la connexion DB ici plutôt que partout
-			ailleurs mais je n'arrive pas à le faire fonctionner.
-
-			$c = new PDO("mysql:host=$host;dbname=$dbname",
-										$identifiant, $password);
+			$c = new PDO("mysql:host=localhost;dbname=escalade-db",
+										"root", "root");
 			$c->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-			*/
-			$res = $this->pdo->prepare($this->req);
+			$res = $c->prepare($this->req);
 			$res->execute();
 			/*
 			Il faudrait faire en sorte d'exécuter fetchAll uniquement
@@ -87,10 +82,18 @@
 			//Faire en sorte d'afficher uniquement si la session est ouverte.
 			$tpl = new Template("com.tpl.html");
 			$tpl->set_filenames(array("com" => "com.tpl.html"));
-			$tpl->assign_block_vars("unite",
-												array("page" => "infos.php?site=".$_GET["site"],
-															"grimpeur" => $_SESSION["id"],
-															"site" => $_GET["site"]));
+			if (isset($_SESSION["login"])) {
+				$tpl->assign_block_vars("unite",
+													array("page" => "infos.php?site=".$_GET["site"],
+																"grimpeur" => $_SESSION["id"],
+																"site" => $_GET["site"]));
+			}
+			else {
+				$tpl->assign_block_vars("defaut",
+													array("message" =>
+																"Connectez-vous pour
+																poster un commentaire.",));
+			}
 			$tpl->pparse("com");
 		}
 	}
