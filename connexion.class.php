@@ -18,20 +18,14 @@ class ID {
 			$login = $param_login;
 			$passwd = $param_passwd;
 
-			//Connexion à la base de données.
+			/*
+			Connexion à la base de données.
+			Il faut remplacer mysqli par PDO, en incluant
+			les identifiants.
+			*/
 			$connexion = mysqli_connect("localhost", "root", "root");
 			$connexion->set_charset("utf8");
 			mysqli_select_db($connexion, "escalade-db");
-
-			/*
-			//Vérification de la connexion à la BDD.
-			if ($connexion->connect_error) {
-			  die("DB connection failed: " . $conn->connect_error);
-			}
-			else {
-				echo 'DB connection OK.';
-			}
-			*/
 
 			//Requête.
 			$req = 'SELECT *
@@ -46,6 +40,7 @@ class ID {
 				$utilisateur = mysqli_fetch_array($res);
 				$_SESSION['id'] = $utilisateur['idgrimpeur'];
 				return("OK");
+
 			}
 			else{
 				//Si l'utilisateur s'est trompé.
@@ -66,4 +61,15 @@ class ID {
 		header("Location:index.php");
 	}
 }
+
+/*
+//Vérification de la connexion à la BDD.
+if ($connexion->connect_error) {
+	die("DB connection failed: " . $conn->connect_error);
+}
+else {
+	echo 'DB connection OK.';
+}
+*/
+
 ?>

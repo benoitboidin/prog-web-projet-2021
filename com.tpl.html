@@ -1,0 +1,33 @@
+
+  <div class="container">
+    <div class="row row-bottom-padded-sm">
+      <div class="col-md-6 col-md-offset-3 text-center">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 text-center animate-box">
+        <div class="flexslider">
+          <!-- BEGIN unite -->
+          <form action="{page}" method="POST">
+            <fieldset>
+              <legend>Laisser un commentaire</legend>
+                <p>
+                    <label for="contenu">Message : </label>
+                    <br>
+                    <textarea if="contenu" name="contenu"></textarea>
+                    <!--Trouver un moyen pour que l'input soit sécurisé
+                    (l'utilisateur peut modifier un hidden avec la console)-->
+                    <input id="grimpeur" name="grimpeur"
+                    type="hidden" value="{unite.grimpeur}">
+                    <input id="site" name="site"
+                    type="hidden" value="{unite.site}">
+                    <br>
+                    <input type="submit">
+                </p>
+            </fieldset>
+          </form>
+          <!-- END unite -->
+        </div>
+      </div>
+    </div>
+  </div>
