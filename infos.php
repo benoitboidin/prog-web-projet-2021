@@ -8,7 +8,7 @@
 	$menu = new Menu();
 	$menu->afficherMenu();
 	require("connect.inc.php");
-
+	
 	//Enregistrement d'un commentaire.
 	try{
 		$req='INSERT INTO message(date, contenu, idsite, idgrimpeur)
@@ -23,6 +23,17 @@
 		$erreur->getMessage();
 	}
 
+	//Suppression d'un commentaire
+	// try{
+		 // $req='DELETE FROM message WHERE idmessage="'.$_GET["idmessage"].'";';
+		// $req='DELETE FROM message WHERE idmessage=24;';
+		// $liste = new Requete($req);
+		// $liste->executer();
+		
+	// } catch(PDOException $erreur) {
+		// echo "<p>Erreur : ".$erreur->getMessage()."</p>\n";
+	// }
+	
 	//Affichage des infos du site.
   try{
 		//Connexion à la BDD.
@@ -30,12 +41,12 @@
 		$c->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 		//Exécution et affichage des requêtes.
-		$req="SELECT nomsite, localisation, niveau, nbvoies, image
-          FROM site
-          WHERE idsite=".$_GET["site"].";";
+		$req="SELECT nomsite, localisation, niveau, nbvoies, image, nomtype
+          FROM site, type
+          WHERE idsite=".$_GET["site"]." AND type.idtype = site.idtype ;";
 		$liste = new Requete($req);
 
-  	$liste->executer();
+		$liste->executer();
 		$liste->afficherInfos();
 
 	} catch(PDOException $erreur) {
@@ -47,15 +58,15 @@
 		$c = new PDO("mysql:host=$host;dbname=$dbname", $identifiant, $password);
 		$c->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-		$req2="SELECT grimpeur.login, message.contenu, message.date
+		$req2="SELECT grimpeur.login, message.contenu, message.date, message.idgrimpeur, message.idmessage
 					FROM message
 					INNER JOIN grimpeur
 					ON grimpeur.idgrimpeur = message.idgrimpeur
-					WHERE message.idsite = ".$_GET["site"].";";
-
+					WHERE message.idsite = ".$_GET["site"]."
+					ORDER BY message.date;";
 		$liste2 = new Requete($req2);
 
-  	$liste2->executer();
+		$liste2->executer();
 		$liste2->afficherCom();
 
 	} catch(PDOException $erreur) {

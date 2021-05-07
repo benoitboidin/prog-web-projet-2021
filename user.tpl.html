@@ -12,8 +12,15 @@
               <!-- BEGIN unite -->
              <li>
                 <blockquote>
-                  <p>{unite.commentaire}</p>
-                  <p><cite>{unite.grimpeur}, {unite.date}</cite></p>
+					<p cols="50">{unite.commentaire}</p>
+					<p><cite>{unite.grimpeur} {unite.date}</cite></p>
+					<!-- BEGIN user -->
+					
+					<!-- <a href="infos.php?site={ligne.unite.id};idmessage={unite.user.idmessage}">Supprimer</a> -->
+					<!-- <a href="infos.php?site={ligne.unite.id}">Supprimer</a> -->
+					<a href="{cible}?suivant=suppr&amp;idmessage={unite.user.idmessage}">Supprimer</a>
+					
+					<!-- END user -->
                 </blockquote>
              </li>
              <!-- END unite -->
