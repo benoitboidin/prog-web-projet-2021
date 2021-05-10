@@ -39,15 +39,9 @@
 
 	//Affichage des infos du site.
   try{
-		//Connexion à la BDD.
-		$c = new PDO("mysql:host=$host;dbname=$dbname", $identifiant, $password);
-		$c->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-		//Exécution et affichage des requêtes.
 		$req="SELECT nomsite, localisation, niveau, nbvoies, image, nomtype
           FROM site, type
           WHERE idsite=".$_GET['site']." AND type.idtype = site.idtype ;";
-		echo $req;
 		$liste = new Requete($req);
 
 		$liste->executer();
@@ -59,9 +53,6 @@
 
 	//Affichage des commentaires.
 	try{
-		$c = new PDO("mysql:host=$host;dbname=$dbname", $identifiant, $password);
-		$c->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
 		$req2="SELECT grimpeur.login, message.contenu, message.date,
 									message.idgrimpeur, message.idmessage
 					FROM message
@@ -78,6 +69,7 @@
 		echo "<p>Erreur : ".$erreur->getMessage()."</p>\n";
 	}
 
+	//Affichage du formulaire.
 	$com = new Requete("", "");
 	$com->afficherFormCom();
 

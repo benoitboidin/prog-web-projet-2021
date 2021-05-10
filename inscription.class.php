@@ -16,19 +16,16 @@ class Inscrip {
 		$passwd2 = $_POST["passwd2"];
 
 		if ($passwd==$passwd2) {
-
-		$connexion=mysqli_connect("localhost","root","root");
-		mysqli_select_db($connexion,"escalade-db");
-
-		$req = 'INSERT INTO grimpeur (login,passwd)
-						VALUES ("'.$login.'","'.$passwd.'");';
-		mysqli_query($connexion, $req);
-
-		$new = new ID();
-		$new->Verif($login, $passwd);
-
-
-		header("Location:index.php");
+			$c = new PDO("mysql:host=localhost;dbname=escalade-db",
+										"root", "root");
+			$c->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			$req = 'INSERT INTO grimpeur (login,passwd)
+							VALUES ("'.$login.'","'.$passwd.'");';
+			$res = $c->prepare($req);
+			$res->execute();
+			$new = new ID();
+			$new->Verif($login, $passwd);
+			header("Location:index.php");
 		}
 		else {
 

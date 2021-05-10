@@ -18,47 +18,29 @@ class ID {
 			$login = $param_login;
 			$passwd = $param_passwd;
 
-			/*
-			Connexion à la base de données.
-			Il faut remplacer mysqli par PDO, en incluant
-			les identifiants.
-			*/
-			$connexion = mysqli_connect("localhost", "root", "root");
-			$connexion->set_charset("utf8");
-			mysqli_select_db($connexion, "escalade-db");
-
-			//Requête.
+			$c = new PDO("mysql:host=localhost;dbname=escalade-db",
+										"root", "root");
+			$c->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$req = 'SELECT *
 							FROM grimpeur
 							WHERE login="'.$login.'" AND passwd="'.$passwd.'";';
-			$res = mysqli_query($connexion, $req);
-
-			//Si les identifiants sont bons.
-			if (mysqli_num_rows($res)==1){
+			$res = $c->prepare($req);
+			$res->execute();
+			$infos = $res->fetchAll(PDO::FETCH_ASSOC);
+			if (count($infos)==1){
 				$_SESSION['login'] = $login;
 				$_SESSION['passwd'] = $passwd;
-				$utilisateur = mysqli_fetch_array($res);
-				$_SESSION['id'] = $utilisateur['idgrimpeur'];
+				$_SESSION['id'] = $infos[0]['idgrimpeur'];
 				return("OK");
-
 			}
+
 			else{
-				//Si l'utilisateur s'est trompé.
 				return("echec");
 			}
-			mysqli_close($connexion);
 		}
 		else {
-			//Si l'utilisateur n'a pas tout rempli.
 			return("NULL");
 		}
-	}
-
-	public function Deconnexion(){
-		// Suppression du tableau de connexion.
-		$_SESSION=array();
-		// Retour à l'index.
-		header("Location:index.php");
 	}
 }
 

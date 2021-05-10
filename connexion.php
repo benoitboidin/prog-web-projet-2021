@@ -1,7 +1,5 @@
 <?php
-	// Ouverture de la session.
 	session_start();
-	// Inclusion du haut de la page (Menu etc...)
 	include "entete.inc.html";
 	require("index.class.php");
 	require("menu.class.php");
@@ -17,11 +15,9 @@
 		$id->Verif($_POST["login"], $_POST["passwd"]);
 
 		if (isset($_SESSION["login"])){
-			//Connexion réussie.
 			header("Location:index.php");
 
 		} else {
-			//Connexion échouée.
 			$message = 'Identifiants inconnus : veuillez essayer à nouveau.';
 			$gab = new Template("./");
 			$gab->set_filenames(array("form"=>"connexionform.tpl.html"));

@@ -1,6 +1,6 @@
 <?php
   session_start();
   require'connexion.class.php';
-  $id = new ID();
-  $id->Deconnexion();
+  $_SESSION=array();
+  header("Location:index.php");
 ?>
