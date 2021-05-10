@@ -24,8 +24,8 @@
 			$res->execute();
 			/*
 			Il faudrait faire en sorte d'exécuter fetchAll uniquement
-			lorsqu'il y a un résultat : les requêtes INSERT INTO
-			ne renvoient rien et produisent une erreur.
+			lorsqu'il y a un résultat car les requêtes INSERT INTO
+			ne renvoient rien et produisent donc une erreur.
 			*/
 			$this->data = $res->fetchAll(PDO::FETCH_ASSOC);
 		}
@@ -57,7 +57,7 @@
 																"nom_site" => $ligne["nomsite"],
 																"localisation" => $ligne["localisation"],
 																"niveau" => $ligne["niveau"],
-																"nbvoies" => $ligne["nbvoies"],																
+																"nbvoies" => $ligne["nbvoies"],
 																"nomtype" => $ligne["nomtype"]));
 		    }
 			$tpl->pparse("infos");
@@ -67,16 +67,24 @@
 		public function afficherCom() {
 			$tpl = new Template("user.tpl.html");
 			$tpl->set_filenames(array("user" => "user.tpl.html"));
-			
+
 			foreach ($this->data as $ligne){
 				$tpl->assign_block_vars("unite",
 													array("grimpeur" => $ligne["login"],
 																"commentaire" => $ligne["contenu"],
 																"date" => $ligne["date"]));
-				//Afficher supprimer et modifier uniquement pour celui qui a effectué le commentaire
-				if (isset($_SESSION["login"]) and $ligne["idgrimpeur"]==$_SESSION["id"]) {
-					$tpl->assign_block_vars("unite.user", array("cible" => $_SERVER["PHP_SELF"],
-																"idmessage" => $ligne["idmessage"]));	
+
+				/*
+				Afficher supprimer et modifier uniquement
+				pour celui qui a effectué le commentaire
+				*/
+
+				if (isset($_SESSION["login"])
+						and $ligne["idgrimpeur"]==$_SESSION["id"]) {
+					$tpl->assign_block_vars("unite.user",
+														array("cible" => $_SERVER["PHP_SELF"],
+																"idmessage" => $ligne["idmessage"],
+																"site" => $_GET["site"]));
 				}
 		   }
 
@@ -101,8 +109,8 @@
 																poster un commentaire."));
 			}
 			$tpl->pparse("com");
-		}	
+		}
 	}
-	
-	
+
+
 ?>

@@ -8,32 +8,35 @@
 	$menu = new Menu();
 	$menu->afficherMenu();
 	require("connect.inc.php");
-	
-	//Enregistrement d'un commentaire.
-	try{
-		$req='INSERT INTO message(date, contenu, idsite, idgrimpeur)
-					VALUES ("'.date("Y-m-d").'",
-									"'.$_POST["contenu"].'",
-									'.$_POST["site"].',
-									'.$_POST["grimpeur"].');';
-		$liste = new Requete($req);
-		$liste->executer();
 
-	} catch(PDOException $erreur) {
-		$erreur->getMessage();
+	//Enregistrement d'un commentaire.
+	if (isset($_POST["contenu"])){
+		try{
+			$req='INSERT INTO message(date, contenu, idsite, idgrimpeur)
+						VALUES ("'.date("Y-m-d").'",
+										"'.$_POST["contenu"].'",
+										'.$_POST["site"].',
+										'.$_POST["grimpeur"].');';
+			$liste = new Requete($req);
+			$liste->executer();
+
+		} catch(PDOException $erreur) {
+			$erreur->getMessage();
+		}
 	}
 
 	//Suppression d'un commentaire
-	// try{
-		 // $req='DELETE FROM message WHERE idmessage="'.$_GET["idmessage"].'";';
-		// $req='DELETE FROM message WHERE idmessage=24;';
-		// $liste = new Requete($req);
-		// $liste->executer();
-		
-	// } catch(PDOException $erreur) {
-		// echo "<p>Erreur : ".$erreur->getMessage()."</p>\n";
-	// }
-	
+	if (isset($_GET["idmessage"])){
+	 try{
+		 $req='DELETE FROM message WHERE idmessage="'.$_GET["idmessage"].'";';
+		 $liste = new Requete($req);
+		 $liste->executer();
+
+	 } catch(PDOException $erreur) {
+		 $erreur->getMessage();
+	 }
+	}
+
 	//Affichage des infos du site.
   try{
 		//Connexion à la BDD.
@@ -43,7 +46,8 @@
 		//Exécution et affichage des requêtes.
 		$req="SELECT nomsite, localisation, niveau, nbvoies, image, nomtype
           FROM site, type
-          WHERE idsite=".$_GET["site"]." AND type.idtype = site.idtype ;";
+          WHERE idsite=".$_GET['site']." AND type.idtype = site.idtype ;";
+		echo $req;
 		$liste = new Requete($req);
 
 		$liste->executer();
@@ -58,11 +62,12 @@
 		$c = new PDO("mysql:host=$host;dbname=$dbname", $identifiant, $password);
 		$c->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-		$req2="SELECT grimpeur.login, message.contenu, message.date, message.idgrimpeur, message.idmessage
+		$req2="SELECT grimpeur.login, message.contenu, message.date,
+									message.idgrimpeur, message.idmessage
 					FROM message
 					INNER JOIN grimpeur
 					ON grimpeur.idgrimpeur = message.idgrimpeur
-					WHERE message.idsite = ".$_GET["site"]."
+					WHERE message.idsite = ".$_GET['site']."
 					ORDER BY message.date;";
 		$liste2 = new Requete($req2);
 

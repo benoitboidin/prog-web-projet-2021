@@ -12,15 +12,30 @@
               <!-- BEGIN unite -->
              <li>
                 <blockquote>
-					<p cols="50">{unite.commentaire}</p>
-					<p><cite>{unite.grimpeur} {unite.date}</cite></p>
-					<!-- BEGIN user -->
-					
-					<!-- <a href="infos.php?site={ligne.unite.id};idmessage={unite.user.idmessage}">Supprimer</a> -->
-					<!-- <a href="infos.php?site={ligne.unite.id}">Supprimer</a> -->
-					<a href="{cible}?suivant=suppr&amp;idmessage={unite.user.idmessage}">Supprimer</a>
-					
-					<!-- END user -->
+        					<p cols="50">
+                    {unite.commentaire}
+                  </p>
+        					<p>
+                    <cite>
+                      {unite.grimpeur} {unite.date}
+                    </cite>
+                  </p>
+        					<!-- BEGIN user -->
+
+        					<!-- <a href="infos.php?site={ligne.unite.id};
+                  idmessage={unite.user.idmessage}">Supprimer</a> -->
+        					<!-- <a href="infos.php?site={ligne.unite.id}
+                  ">Supprimer</a> -->
+
+                  <!--URL correcte :
+                  {cible}?suivant=suppr&amp;idmessage={unite.user.idmessage} -->
+        					<a href="{cible}?suivant=suppr
+                                  &idmessage={unite.user.idmessage}
+                                  &site={unite.user.site}">
+                    Supprimer
+                  </a>
+
+        					<!-- END user -->
                 </blockquote>
              </li>
              <!-- END unite -->
