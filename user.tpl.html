@@ -12,30 +12,36 @@
               <!-- BEGIN unite -->
              <li>
                 <blockquote>
-        					<p cols="50">
+        		  <p cols="50">
                     {unite.commentaire}
+					<!-- BEGIN connect -->	
+					<form action="{page}" method="POST">
+						<textarea name="modif" maxlength="300"
+						rows="2" cols="50">{unite.connect.commentaire}</textarea>
+						
+						<input id="grimpeur" name="grimpeur"
+						type="hidden" value="{unite.connect.idmessage}">
+						
+						<input type="submit" value="Modifier">
+						
+					</form>
+					<!-- END connect -->
                   </p>
-        					<p>
+        		  <p>
                     <cite>
                       {unite.grimpeur} {unite.date}
                     </cite>
                   </p>
         					<!-- BEGIN user -->
 
-        					<!-- <a href="infos.php?site={ligne.unite.id};
-                  idmessage={unite.user.idmessage}">Supprimer</a> -->
-        					<!-- <a href="infos.php?site={ligne.unite.id}
-                  ">Supprimer</a> -->
-
-                  <!--URL correcte :
-                  {cible}?suivant=suppr&amp;idmessage={unite.user.idmessage} -->
         					<a href="{cible}?suivant=suppr
                                   &idmessage={unite.user.idmessage}
                                   &site={unite.user.site}">
                     Supprimer
                   </a>
 
-        					<!-- END user -->
+							<!-- END user -->
+        					
                 </blockquote>
              </li>
              <!-- END unite -->

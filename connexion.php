@@ -1,7 +1,7 @@
 <?php
 	session_start();
 	include "entete.inc.html";
-	require("index.class.php");
+	require("requete.class.php");
 	require("menu.class.php");
 	$menu = new Menu();
 	$menu->afficherMenu();

@@ -3,7 +3,7 @@
 	session_start();
 	// Inclusion du haut de la page (Menu etc...)
 	include "entete.inc.html";
-	require("index.class.php");
+	require("requete.class.php");
 	require("menu.class.php");
 	$menu = new Menu();
 	$menu->afficherMenu();
@@ -24,7 +24,19 @@
 			$erreur->getMessage();
 		}
 	}
+	
+	//Modification d'un message
+		if (isset($_POST["modif"])){
+	 try{
+		 $req='UPDATE message SET contenu="'.$_POST["modif"].'" WHERE idmessage="'.$_GET["idmessage"].'";';
+		 $liste = new Requete($req);
+		 $liste->executer();
 
+	 } catch(PDOException $erreur) {
+		 $erreur->getMessage();
+	 }
+	}
+	
 	//Suppression d'un commentaire
 	if (isset($_GET["idmessage"])){
 	 try{
@@ -37,6 +49,9 @@
 	 }
 	}
 
+
+	
+	
 	//Affichage des infos du site.
   try{
 		$req="SELECT nomsite, localisation, niveau, nbvoies, image, nomtype
