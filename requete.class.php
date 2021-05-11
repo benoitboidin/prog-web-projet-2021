@@ -69,31 +69,34 @@
 			$tpl->set_filenames(array("user" => "user.tpl.html"));
 
 			foreach ($this->data as $ligne){
-				if (!isset($_SESSION["login"]) or $ligne["idgrimpeur"]!=$_SESSION["id"]){
+				if (!isset($_SESSION["login"])
+						or $ligne["idgrimpeur"]!=$_SESSION["id"]){
 					$tpl->assign_block_vars("unite",
 													array("grimpeur" => $ligne["login"],
 															"commentaire" => $ligne["contenu"],
 															"date" => $ligne["date"]));
 				}
-				
-				//Afficher supprimer et modifier uniquement pour celui qui a effectué le commentaire
-				if (isset($_SESSION["login"]) and $ligne["idgrimpeur"]==$_SESSION["id"]) {
+
+				//Afficher supprimer et modifier uniquement
+				//pour celui qui a effectué le commentaire
+				if (isset($_SESSION["login"])
+						and $ligne["idgrimpeur"]==$_SESSION["id"]) {
+
 					$tpl->assign_block_vars("unite",
 													array("grimpeur" => $ligne["login"],
 															"date" => $ligne["date"]));
-					$tpl->assign_block_vars("unite.connect", 
+
+					$tpl->assign_block_vars("unite.connect",
 														array("page" => "infos.php?site=".$_GET["site"],
 																"idmessage" => $ligne["idmessage"],
 																"commentaire" => $ligne["contenu"]));
-																
+
 					$tpl->assign_block_vars("unite.user",
 														array("cible" => $_SERVER["PHP_SELF"],
 																"idmessage" => $ligne["idmessage"],
-																"site" => $_GET["site"]));											
+																"site" => $_GET["site"]));
 				}
-				
 		   }
-
 			$tpl->pparse("user");
 		}
 
@@ -117,6 +120,4 @@
 			$tpl->pparse("com");
 		}
 	}
-
-
 ?>

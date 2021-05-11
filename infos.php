@@ -24,11 +24,14 @@
 			$erreur->getMessage();
 		}
 	}
-	
+
 	//Modification d'un message
 		if (isset($_POST["modif"])){
 	 try{
-		 $req='UPDATE message SET contenu="'.$_POST["modif"].'" WHERE idmessage="'.$_GET["idmessage"].'";';
+		 $req='UPDATE message
+		 			 SET contenu="'.$_POST["modif"].'"
+					 WHERE idmessage="'.$_POST["idmessage"].'";';
+			echo $req;
 		 $liste = new Requete($req);
 		 $liste->executer();
 
@@ -36,11 +39,12 @@
 		 $erreur->getMessage();
 	 }
 	}
-	
+
 	//Suppression d'un commentaire
 	if (isset($_GET["idmessage"])){
 	 try{
-		 $req='DELETE FROM message WHERE idmessage="'.$_GET["idmessage"].'";';
+		 $req='DELETE FROM message
+		 			 WHERE idmessage="'.$_GET["idmessage"].'";';
 		 $liste = new Requete($req);
 		 $liste->executer();
 
@@ -50,8 +54,8 @@
 	}
 
 
-	
-	
+
+
 	//Affichage des infos du site.
   try{
 		$req="SELECT nomsite, localisation, niveau, nbvoies, image, nomtype

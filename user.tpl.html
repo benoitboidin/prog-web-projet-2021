@@ -12,36 +12,30 @@
               <!-- BEGIN unite -->
              <li>
                 <blockquote>
-        		  <p cols="50">
+            		  <p cols="50">
                     {unite.commentaire}
-					<!-- BEGIN connect -->	
-					<form action="{page}" method="POST">
-						<textarea name="modif" maxlength="300"
-						rows="2" cols="50">{unite.connect.commentaire}</textarea>
-						
-						<input id="grimpeur" name="grimpeur"
-						type="hidden" value="{unite.connect.idmessage}">
-						
-						<input type="submit" value="Modifier">
-						
-					</form>
-					<!-- END connect -->
-                  </p>
-        		  <p>
-                    <cite>
-                      {unite.grimpeur} {unite.date}
-                    </cite>
+          					<!-- BEGIN connect -->
+          					<form action="{page}" method="POST">
+          						<textarea name="modif" maxlength="300"
+          						rows="2" cols="50">{unite.connect.commentaire}</textarea>
+          						<input id="idmessage" name="idmessage"
+          						type="hidden" value="{unite.connect.idmessage}">
+          						<input type="submit" value="Modifier">
+          					</form>
+          					<!-- END connect -->
                   </p>
         					<!-- BEGIN user -->
-
         					<a href="{cible}?suivant=suppr
                                   &idmessage={unite.user.idmessage}
                                   &site={unite.user.site}">
                     Supprimer
                   </a>
-
-							<!-- END user -->
-        					
+							    <!-- END user -->
+                  <p>
+                    <cite>
+                      {unite.grimpeur} {unite.date}
+                    </cite>
+                  </p>
                 </blockquote>
              </li>
              <!-- END unite -->
