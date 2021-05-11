@@ -21,4 +21,5 @@
 		echo "<p>Erreur : ".$erreur->getMessage()."</p>\n";
 	}
   include "pied.inc.html";
+
 ?>
