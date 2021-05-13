@@ -36,6 +36,18 @@
 			$tpl = new Template("sites.tpl.html");
 			$tpl->set_filenames(array("site" => "sites.tpl.html"));
 
+			if (isset($_SESSION["login"])) {
+				$tpl->assign_block_vars("connect",
+													array("msg" =>
+																"Ajouter un site"));
+			}
+			else {
+				$tpl->assign_block_vars("defaut",
+													array("msg" =>
+																"Connectez-vous pour
+																ajouter un site."));
+			}
+			
 			foreach ($this->data as $ligne){
 				$tpl->assign_block_vars("ligne.unite",
 													array("nom_img" => $ligne["image"],
@@ -50,7 +62,7 @@
 
 			$tpl = new Template("infos.tpl.html");
 			$tpl->set_filenames(array("infos" => "infos.tpl.html"));
-
+		
 			foreach ($this->data as $ligne){
 				$tpl->assign_block_vars("info",
 													array("image" => $ligne["image"],
@@ -58,11 +70,11 @@
 																"localisation" => $ligne["localisation"],
 																"niveau" => $ligne["niveau"],
 																"nbvoies" => $ligne["nbvoies"],
-																"nomtype" => $ligne["nomtype"]));
+																"nomtype" => $ligne["nomtype"]));												
 		    }
 			$tpl->pparse("infos");
 		}
-
+		
 		//Affichage des commentaires d'un site.
 		public function afficherCom() {
 			$tpl = new Template("user.tpl.html");

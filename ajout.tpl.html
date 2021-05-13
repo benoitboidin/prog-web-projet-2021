@@ -1,0 +1,39 @@
+<section id="fh5co-hero" class="js-fullheight"
+style="background-image: url(images/hero_bg.jpg);" data-next="yes">
+	<div class="fh5co-overlay"></div>
+	<div class="container">
+		<div class="fh5co-intro js-fullheight">
+			<div class="fh5co-intro-text">
+
+				<div class="fh5co-left-position">
+					
+					<form action="ajout.php" method="post">
+						<fieldset>
+						<legend>Ajouter un site</legend>
+							<p><label for="nsite">Nom du site :</label> <input type="text" size="30" id="nsite" name="nomsite"/></p>
+							<p><label for="vsite">Ville du site :</label> <input type="text" size="30" id="vsite" name="villesite"/></p>
+							<p><label for="cot">Cotation :</label> <input type="text" size="7" id="cot" name="cotation"/></p>
+							<p><label for="nvoies">Nombre de voies :</label> <input type="number" id="nvoies" name="nbvoies"/></p>
+							<p><label for="typesite">Type :</label> <SELECT name="type" id="typesite">
+																		<OPTION VALUE=1>Site sportif</OPTION>;
+																		<OPTION VALUE=2>Site de bloc</OPTION>;
+																		<OPTION VALUE=3>Terrain d'aventure</OPTION>;
+																	</SELECT></p>
+																					
+							<!-- <p><label for="photo">Photo du site</label> : -->
+									<!-- <input type="file" id="photo" name="photo" /></p> -->
+							<p><label for="submit"><input type="submit" id="submit" value="Valider" /></label> </p>
+						</fieldset>
+					</form>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="fh5co-learn-more animate-box">
+		<a href="#" class="scroll-btn">
+			<span class="text">Explorer</span>
+			<span class="arrow"><i class="icon-chevron-down"></i></span>
+		</a>
+	</div>
+</section>

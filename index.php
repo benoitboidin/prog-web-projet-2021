@@ -2,13 +2,13 @@
 	// Ouverture de la session.
 	session_start();
 	// Inclusion du haut de la page (Menu etc...)
-	include "entete.inc.html";
+	include ("entete.inc.html");
 	require("requete.class.php");
 	require("menu.class.php");
 	$menu = new Menu();
 	$menu->afficherMenu();
 	require("connect.inc.php");
-	include "accueil.inc.html";
+	include ("accueil.inc.html");
 
 	//Affichage de la grille des sites.
 	try{
@@ -20,6 +20,6 @@
 	} catch(PDOException $erreur) {
 		echo "<p>Erreur : ".$erreur->getMessage()."</p>\n";
 	}
-  include "pied.inc.html";
+  include ("pied.inc.html");
 
 ?>
