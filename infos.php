@@ -53,9 +53,6 @@
 	 }
 	}
 
-
-
-
 	//Affichage des infos du site.
   try{
 		$req="SELECT nomsite, localisation, niveau, nbvoies, image, nomtype
