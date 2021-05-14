@@ -12,7 +12,7 @@
 	$inscrip = new Inscrip();
 
 	if (isset($_POST["login"])) {
-		$inscrip->Nouveau($_POST["login"], $_POST["passwd"],$_POST["passwd2"]);
+		$inscrip->Nouveau($_POST["login"], $_POST["passwd"], $_POST["passwd2"]);
 
 		$message = 'Les mots de passe sont différents.';
 
