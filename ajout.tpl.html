@@ -7,19 +7,35 @@ style="background-image: url(images/hero_bg.jpg);" data-next="yes">
 
 				<div class="fh5co-left-position">
 
-					<form action="ajout.php" method="post">
+					<form action="ajout.php" method="post" ENCTYPE="multipart/form-data">
 						<fieldset>
 						<legend>Ajouter un site</legend>
-							<p><label for="nsite">Nom du site :</label> <input type="text" size="30" id="nsite" name="nomsite"/></p>
-							<p><label for="vsite">Ville du site :</label> <input type="text" size="30" id="vsite" name="villesite"/></p>
-							<p><label for="cot">Cotation :</label> <input type="text" size="7" id="cot" name="cotation"/></p>
-							<p><label for="nvoies">Nombre de voies :</label> <input type="number" id="nvoies" name="nbvoies"/></p>
-							<p><label for="typesite">Type :</label> <SELECT name="type" id="typesite">
+							<p><label for="nsite">Nom du site :</label>
+								<input type="text" size="30" id="nsite" name="nomsite"/>
+							</p>
+							<p><label for="vsite">Ville du site :</label>
+								<input type="text" size="30" id="vsite" name="villesite"/>
+							</p>
+							<p><label for="cot">Cotation :</label>
+								<input type="text" size="7" id="cot" name="cotation"/>
+							</p>
+							<p><label for="nvoies">Nombre de voies :</label>
+								<input type="number" id="nvoies" name="nbvoies"/>
+							</p>
+							<p><label for="typesite">Type :</label>
+								<SELECT name="type" id="typesite">
 																		<OPTION VALUE=1>Site sportif</OPTION>;
 																		<OPTION VALUE=2>Site de bloc</OPTION>;
 																		<OPTION VALUE=3>Terrain d'aventure</OPTION>;
 																	</SELECT></p>
-																					
+
+	              <p><label for="typesite">Photo du site :</label>
+									<input type="hidden" name="MAX_FILE_SIZE" value=1000000
+												style="font-family: MerriweatherBold; color: #3B3B3B">
+									<input type="file" name="nom_du_fichier"
+												style="font-family: MerriweatherBold; color: #3B3B3B">
+								</p>
+
 							<!-- <p><label for="image">Photo du site : </label> -->
 								<!-- <input type="file" id="image" name="image" /></p> -->
 							<p><label for="submit"></label><input class="form-control" type="submit" id="submit" value="Valider" /> </p>

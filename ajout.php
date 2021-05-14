@@ -6,21 +6,22 @@
 	require("requete.class.php");
 	require("menu.class.php");
 	$menu = new Menu();
-	//$menu->afficherMenu();
+	$menu->afficherMenu();
 	require("ajout.class.php");
 
-	require ("ajout.tpl.html");
+	if (isset($_POST["nomsite"])){ //Tout vérifier.
 
-	$ajout = new Ajout();
+		$ajout = new Ajout();
+		$ajout->Ajoutsite($_POST["nomsite"],$_POST["villesite"],
+											$_POST["cotation"],$_POST["nbvoies"],
+											$_POST["type"],$_FILES['nom_du_fichier']['name']);
 
-	$ajout->Ajoutsite($_POST["nomsite"],$_POST["villesite"],$_POST["cotation"],$_POST["nbvoies"],$_POST["type"]);
+	}
+
 
 	$gab = new Template("./");
 	$gab->set_filenames(array("form"=>"ajout.tpl.html"));
 	$gab->pparse("form");
 
-
-
 	include ("pied.inc.html");
-
 ?>

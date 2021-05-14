@@ -1,5 +1,5 @@
-<?php	
-	
+<?php
+
 Class Ajout {
 
 	private $nomsite;
@@ -7,34 +7,47 @@ Class Ajout {
 	private $cotation;
 	private $nbvoies;
 	private $type;
-	
-		// public function retourneFile() {
-	// return $this->file_data;
-	// }
-	
-	// public function uploadePhoto() {
-		// move_uploaded_file($this->file_data["tmp_name"], __DIR__ . "/image-site/" . $this->file_data["name"]);
-	// }
-	
-	public function Ajoutsite($param_nomsite,$param_villesite,$param_cotation,$param_nbvoies,$param_type) {
-	
-		$nomsite = $_POST["nomsite"];
-		$villesite = $_POST["villesite"];
-		$cotation = $_POST["cotation"];
-		$nbvoies = $_POST["nbvoies"];
-		$type = $_POST["type"];
-	
+
+	public function Ajoutsite($param_nomsite,$param_villesite,$param_cotation,
+														$param_nbvoies,$param_type,$param_photo) {
+
+		$nomsite = $param_nomsite;
+		$villesite = $param_villesite;
+		$cotation = $param_cotation;
+		$nbvoies = $param_nbvoies;
+		$type = $param_type;
+		$photo = $param_photo;
+
+		if($_FILES["nom_du_fichier"]["name"]==""){
+				$_FILES["nom_du_fichier"]["name"]= "null.jpg";
+			}
+		else{
+			// Vérification image.
+			if ($_FILES['nom_du_fichier']['error']) {
+				die("Erreur du transfert de l'image.<br>
+						<a href=\"Index.php\">Accueil</a>");
+			}
+
+			// Transfert de l'image vers le répertoire.
+			if (isset($_FILES['nom_du_fichier']['name'])
+					&& ($_FILES['nom_du_fichier']['error'] == UPLOAD_ERR_OK)) {
+				$chemin_destination = 'image-site/';
+				move_uploaded_file($_FILES['nom_du_fichier']['tmp_name'],
+											$chemin_destination.$_FILES['nom_du_fichier']['name']);
+			}
+		}
+
 		$c = new PDO("mysql:host=localhost;dbname=escalade-db",	"root", "root");
 		$c->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		
-		$req = 'INSERT INTO site (nomsite, localisation, niveau, nbvoies, image, idtype)
-							VALUES ("'.$nomsite.'","'.$villesite.'","'.$cotation.'","'.$nbvoies.'","","'.$type.'");';
+
+		$req = 'INSERT INTO site (nomsite, localisation, niveau,
+															nbvoies, image, idtype)
+						VALUES ("'.$nomsite.'","'.$villesite.'","'.$cotation.'",
+										"'.$nbvoies.'","'.$photo.'","'.$type.'");';
+		echo $req;
 		$res = $c->prepare($req);
-		$res->execute();
+	  $res->execute();
 		header("Location:index.php");
 	}
 }
-	
-		
-		
 ?>
