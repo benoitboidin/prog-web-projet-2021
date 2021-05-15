@@ -1,15 +1,17 @@
 <?php
 	session_start();
 	include "entete.inc.html";
-	require("requete.class.php");
-	require("menu.class.php");
+	require "requete.class.php";
+	require "connexion.class.php";
+	require "menu.class.php";
 	$menu = new Menu();
 	$menu->afficherMenu();
-	require("connexion.class.php");
 
 	$id = new ID();
 
-	//Tentative de connexion.
+	/*
+	Tentative de connexion.
+	*/
 	if (isset($_POST["login"])) {
 
 		$id->Verif($_POST["login"], $_POST["passwd"]);
@@ -26,7 +28,9 @@
 			}
 		}
 
-	// Si l'utilisateur n'est pas connecté.
+	/*
+	Si l'utilisateur n'est pas connecté.
+	*/
 	elseif (!isset($_SESSION["login"])) {
 		$message = 'Veuillez entrer vos identifiants.';
 		$gab = new Template("./");
@@ -40,5 +44,5 @@
 		header("Location:index.php");
 	}
 
-	include("pied.inc.html");
+	include "pied.inc.html";
 ?>

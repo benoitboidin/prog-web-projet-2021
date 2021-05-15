@@ -3,13 +3,14 @@
 	session_start();
 	// Inclusion du haut de la page (Menu etc...)
 	include "entete.inc.html";
-	require("requete.class.php");
-	require("menu.class.php");
+	require "requete.class.php";
+	require "menu.class.php";
 	$menu = new Menu();
 	$menu->afficherMenu();
-	require("connect.inc.php");
 
-	//Enregistrement d'un commentaire.
+	/*
+	Enregistrement d'un commentaire.
+	*/
 	if (isset($_POST["contenu"])){
 		try{
 			$req='INSERT INTO message(date, contenu, idsite, idgrimpeur)
@@ -25,7 +26,9 @@
 		}
 	}
 
-	//Modification d'un message
+	/*
+	Modification d'un message
+	*/
 		if (isset($_POST["modif"])){
 	 try{
 		 $req='UPDATE message
@@ -40,7 +43,9 @@
 	 }
 	}
 
-	//Suppression d'un commentaire
+	/*
+	Suppression d'un commentaire
+	*/
 	if (isset($_GET["idmessage"])){
 	 try{
 		 $req='DELETE FROM message
@@ -53,7 +58,9 @@
 	 }
 	}
 
-	//Affichage des infos du site.
+	/*
+	Affichage des infos du site.
+	*/
   try{
 		$req="SELECT nomsite, localisation, niveau, nbvoies, image, nomtype
           FROM site, type
@@ -67,7 +74,9 @@
 		echo "<p>Erreur : ".$erreur->getMessage()."</p>\n";
 	}
 
-	//Affichage des commentaires.
+	/*
+	Affichage des commentaires.
+	*/
 	try{
 		$req2="SELECT grimpeur.login, message.contenu, message.date,
 									message.idgrimpeur, message.idmessage
@@ -85,7 +94,9 @@
 		echo "<p>Erreur : ".$erreur->getMessage()."</p>\n";
 	}
 
-	//Affichage du formulaire.
+	/*
+	Affichage du formulaire pour poster un avis.
+	*/
 	$com = new Requete("", "");
 	$com->afficher("com_form");
 

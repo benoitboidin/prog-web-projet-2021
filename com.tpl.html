@@ -7,6 +7,7 @@
     <div class="row">
       <div class="col-md-8 col-md-offset-2 text-center animate-box">
         <div class="flexslider">
+
           <!-- BEGIN defaut -->
           <a href="connexion.php">{defaut.message}</a>
           <!-- END defaut -->
@@ -18,8 +19,8 @@
                 <p>
                     <label for="contenu">Message : </label>
                     <br>
-                    <textarea if="contenu" name="contenu" maxlength="300"
-                    rows="4" cols="50"></textarea>
+                    <textarea class="form-control" if="contenu" name="contenu"
+                    maxlength="300" rows="4" cols="50"></textarea>
                     <!--Trouver un moyen pour que l'input soit sécurisé
                     (l'utilisateur peut modifier un hidden avec la console)-->
                     <input id="grimpeur" name="grimpeur"
@@ -32,6 +33,7 @@
             </fieldset>
           </form>
           <!-- END unite -->
+
         </div>
       </div>
     </div>

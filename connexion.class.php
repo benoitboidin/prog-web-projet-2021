@@ -7,9 +7,9 @@ class ID {
 
 	/*
 	La fonction retourne :
+		- "OK" si la connexion a réussi.
 		- "NULL" si l'utilisateur a oublié un champ.
 		- "echec" si les logs ne correspondent pas.
-		- "OK" si la connexion a réussi.
 	*/
 
 	public function Verif($param_login,$param_passwd){

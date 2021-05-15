@@ -15,13 +15,17 @@ Class Ajout {
 				$_FILES["nom_du_fichier"]["name"]= "null.jpg";
 			}
 		else{
-			// Vérification image.
+			/*
+			Vérification de la réception de l'image.
+			*/
 			if ($_FILES['nom_du_fichier']['error']) {
 				die("Erreur du transfert de l'image.<br>
 						<a href=\"Index.php\">Accueil</a>");
 			}
 
-			// Transfert de l'image vers le répertoire.
+			/*
+			Transfert de l'image vers le répertoire du site.
+			*/
 			if (isset($_FILES['nom_du_fichier']['name'])
 					&& ($_FILES['nom_du_fichier']['error'] == UPLOAD_ERR_OK)) {
 				$chemin_destination = 'image-site/';
@@ -30,9 +34,14 @@ Class Ajout {
 			}
 		}
 
+		/*
+		Ajout du nouveau site à la base de données (avec le nom de
+		fichier de la photo).
+		*/
 		if (!empty($param_nomsite) and !empty($param_villesite)
 				and !empty($param_cotation) and !empty($param_nbvoies)
 				and !empty($param_type) and !empty($param_photo)) {
+
 			$nomsite = $param_nomsite;
 			$villesite = $param_villesite;
 			$cotation = $param_cotation;

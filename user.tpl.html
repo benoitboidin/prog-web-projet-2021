@@ -16,8 +16,10 @@
                     {unite.commentaire}
           					<!-- BEGIN connect -->
           					<form action="{page}" method="POST">
-          						<textarea name="modif" maxlength="300"
-          						rows="2" cols="50">{unite.connect.commentaire}</textarea>
+          						<textarea class="form-control" name="modif" maxlength="300"
+          						rows="2" cols="50">
+                      {unite.connect.commentaire}
+                      </textarea>
           						<input id="idmessage" name="idmessage"
           						type="hidden" value="{unite.connect.idmessage}">
           						<input type="submit" value="Modifier">
@@ -33,7 +35,7 @@
 							    <!-- END user -->
                   <p>
                     <cite>
-                      {unite.grimpeur} {unite.date}
+                      {unite.grimpeur}, le {unite.date}
                     </cite>
                   </p>
                 </blockquote>

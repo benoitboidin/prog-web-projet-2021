@@ -6,7 +6,9 @@ class Menu {
     Requière le template et la session.
     */
     if(!isset($_SESSION[login])){
-      //Utilisateur non connecté.
+      /*
+      Utilisateur non connecté : afficher "Connexion" et "Inscription".
+      */
       $bouton = 'Connexion';
       $href = 'connexion.php';
       $bouton2 = 'Inscription';
@@ -20,7 +22,9 @@ class Menu {
       $gab->pparse("menu");
     }
     else{
-      $//Utilisateur connecté.
+      /*
+      Utilisateur connecté  : afficher "Déconnexion".
+      */
       $bouton = 'Connecté';
       $href = '#';
       $bouton2 = 'Déconnexion';
