@@ -10,9 +10,7 @@ class Inscrip {
 
 	public function Nouveau($param_login,$param_passwd,$param_passwd2) {
 
-	if (!empty($param_login)
-			and !empty($param_passwd)
-			and !empty($param_passwd2)) {
+	if (!empty($param_login) and !empty($param_passwd) and !empty($param_passwd2)) {
 		$login = $_POST["login"];
 		$passwd = $_POST["passwd"];
 		$passwd2 = $_POST["passwd2"];
