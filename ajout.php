@@ -10,16 +10,16 @@
 	$menu->afficherMenu();
 
 	/*
-	Ajout du site si toutes les champs sont remplis.
+	Ajout du site si tous les champs sont remplis.
 	*/
 	if (isset($_POST["nomsite"]) AND isset($_POST["villesite"])
 			AND isset($_POST["cotation"]) AND isset($_POST["type"])
-			AND isset($_FILES['nom_du_fichier']['name'])){
+			AND isset($_FILES["nom_du_fichier"]["name"])){
 
 		$ajout = new Ajout();
 		$ajout->Ajoutsite($_POST["nomsite"],$_POST["villesite"],
 											$_POST["cotation"],$_POST["nbvoies"],
-											$_POST["type"],$_FILES['nom_du_fichier']['name']);
+											$_POST["type"],$_FILES["nom_du_fichier"]["name"]);
 
 	}
 

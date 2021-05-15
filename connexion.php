@@ -20,7 +20,7 @@
 			header("Location:index.php");
 
 		} else {
-			$message = 'Identifiants inconnus : veuillez essayer à nouveau.';
+			$message = "Identifiants inconnus : veuillez essayer à nouveau.";
 			$gab = new Template("./");
 			$gab->set_filenames(array("form"=>"connexionform.tpl.html"));
 			$gab->assign_vars(array("message"=>$message));
@@ -32,7 +32,7 @@
 	Si l'utilisateur n'est pas connecté.
 	*/
 	elseif (!isset($_SESSION["login"])) {
-		$message = 'Veuillez entrer vos identifiants.';
+		$message = "Veuillez entrer vos identifiants.";
 		$gab = new Template("./");
 		$gab->set_filenames(array("form"=>"connexionform.tpl.html"));
 		$gab->assign_vars(array("message"=>$message));

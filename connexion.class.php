@@ -21,16 +21,16 @@ class ID {
 			$c = new PDO("mysql:host=localhost;dbname=escalade-db",
 										"root", "root");
 			$c->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			$req = 'SELECT *
+			$req = "SELECT *
 							FROM grimpeur
-							WHERE login="'.$login.'" AND passwd="'.$passwd.'";';
+							WHERE login='".$login."' AND passwd='".$passwd."';";
 			$res = $c->prepare($req);
 			$res->execute();
 			$infos = $res->fetchAll(PDO::FETCH_ASSOC);
 			if (count($infos)==1){
-				$_SESSION['login'] = $login;
-				$_SESSION['passwd'] = $passwd;
-				$_SESSION['id'] = $infos[0]['idgrimpeur'];
+				$_SESSION["login"] = $login;
+				$_SESSION["passwd"] = $passwd;
+				$_SESSION["id"] = $infos[0]["idgrimpeur"];
 				return("OK");
 			}
 

@@ -9,10 +9,10 @@ class Menu {
       /*
       Utilisateur non connecté : afficher "Connexion" et "Inscription".
       */
-      $bouton = 'Connexion';
-      $href = 'connexion.php';
-      $bouton2 = 'Inscription';
-      $href2 = 'inscription.php';
+      $bouton = "Connexion";
+      $href = "connexion.php";
+      $bouton2 = "Inscription";
+      $href2 = "inscription.php";
       $gab = new Template("./");
       $gab->set_filenames(array("menu"=>"menu.tpl.html"));
       $gab->assign_vars(array("bouton"=>$bouton,
@@ -25,10 +25,10 @@ class Menu {
       /*
       Utilisateur connecté  : afficher "Déconnexion".
       */
-      $bouton = 'Connecté';
-      $href = '#';
-      $bouton2 = 'Déconnexion';
-      $href2 = 'deconnexion.php';
+      $bouton = "Connecté";
+      $href = "#";
+      $bouton2 = "Déconnexion";
+      $href2 = "deconnexion.php";
       $gab = new Template("./");
       $gab->set_filenames(array("menu"=>"menu.tpl.html"));
       $gab->assign_vars(array("bouton"=>$bouton,

@@ -18,7 +18,7 @@ Class Ajout {
 			/*
 			Vérification de la réception de l'image.
 			*/
-			if ($_FILES['nom_du_fichier']['error']) {
+			if ($_FILES["nom_du_fichier"]["error"]) {
 				die("Erreur du transfert de l'image.<br>
 						<a href=\"Index.php\">Accueil</a>");
 			}
@@ -26,11 +26,11 @@ Class Ajout {
 			/*
 			Transfert de l'image vers le répertoire du site.
 			*/
-			if (isset($_FILES['nom_du_fichier']['name'])
-					&& ($_FILES['nom_du_fichier']['error'] == UPLOAD_ERR_OK)) {
-				$chemin_destination = 'image-site/';
-				move_uploaded_file($_FILES['nom_du_fichier']['tmp_name'],
-											$chemin_destination.$_FILES['nom_du_fichier']['name']);
+			if (isset($_FILES["nom_du_fichier"]["name"])
+					&& ($_FILES["nom_du_fichier"]["error"] == UPLOAD_ERR_OK)) {
+				$chemin_destination = "image-site/";
+				move_uploaded_file($_FILES["nom_du_fichier"]["tmp_name"],
+											$chemin_destination.$_FILES["nom_du_fichier"]["name"]);
 			}
 		}
 

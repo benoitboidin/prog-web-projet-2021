@@ -20,7 +20,7 @@
 		/*
 		Échec de l'inscription.
 		*/
-		$message = 'Les mots de passe sont différents.';
+		$message = "Les mots de passe sont différents.";
 
 		$gab = new Template("./");
 		$gab->set_filenames(array("form"=>"inscriptionform.tpl.html"));
@@ -31,7 +31,7 @@
 	Affichage du formulaire.
 	*/
 	elseif (!isset($_SESSION["login"])) {
-		$message = 'Remplissez le formulaire pour vous inscrire.';
+		$message = "Remplissez le formulaire pour vous inscrire.";
 		$gab = new Template("./");
 		$gab->set_filenames(array("form"=>"inscriptionform.tpl.html"));
 		$gab->assign_vars(array("message"=>$message));

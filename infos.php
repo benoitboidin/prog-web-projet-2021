@@ -13,11 +13,11 @@
 	*/
 	if (isset($_POST["contenu"])){
 		try{
-			$req='INSERT INTO message(date, contenu, idsite, idgrimpeur)
-						VALUES ("'.date("Y-m-d").'",
-										"'.$_POST["contenu"].'",
-										'.$_POST["site"].',
-										'.$_POST["grimpeur"].');';
+			$req="INSERT INTO message(date, contenu, idsite, idgrimpeur)
+						VALUES ('".date("Y-m-d")."',
+										'".$_POST["contenu"]."',
+										".$_POST["site"].",
+										".$_POST["grimpeur"].");";
 			$liste = new Requete($req);
 			$liste->executer();
 
@@ -31,9 +31,9 @@
 	*/
 		if (isset($_POST["modif"])){
 	 try{
-		 $req='UPDATE message
-		 			 SET contenu="'.$_POST["modif"].'"
-					 WHERE idmessage="'.$_POST["idmessage"].'";';
+		 $req="UPDATE message
+		 			 SET contenu='".$_POST["modif"]."'
+					 WHERE idmessage='".$_POST["idmessage"]."';";
 			echo $req;
 		 $liste = new Requete($req);
 		 $liste->executer();
@@ -48,8 +48,8 @@
 	*/
 	if (isset($_GET["idmessage"])){
 	 try{
-		 $req='DELETE FROM message
-		 			 WHERE idmessage="'.$_GET["idmessage"].'";';
+		 $req="DELETE FROM message
+		 			 WHERE idmessage='".$_GET["idmessage"]."';";
 		 $liste = new Requete($req);
 		 $liste->executer();
 
@@ -83,7 +83,7 @@
 					FROM message
 					INNER JOIN grimpeur
 					ON grimpeur.idgrimpeur = message.idgrimpeur
-					WHERE message.idsite = ".$_GET['site']."
+					WHERE message.idsite = ".$_GET["site"]."
 					ORDER BY message.date;";
 		$liste2 = new Requete($req2);
 
