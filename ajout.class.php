@@ -29,27 +29,30 @@ Class Ajout {
 											$chemin_destination.$_FILES['nom_du_fichier']['name']);
 			}
 		}
-			
-		if (!empty($param_nomsite) and !empty($param_villesite) and !empty($param_cotation)
-			and !empty($param_nbvoies) and !empty($param_type) and !empty($param_photo)) {	
+
+		if (!empty($param_nomsite) and !empty($param_villesite)
+				and !empty($param_cotation) and !empty($param_nbvoies)
+				and !empty($param_type) and !empty($param_photo)) {
 			$nomsite = $param_nomsite;
 			$villesite = $param_villesite;
 			$cotation = $param_cotation;
 			$nbvoies = $param_nbvoies;
 			$type = $param_type;
 			$photo = $param_photo;
-			
+
 			$c = new PDO("mysql:host=localhost;dbname=escalade-db",	"root", "root");
 			$c->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-			$req = 'INSERT INTO site (nomsite, localisation, niveau, nbvoies, image, idtype)
+			$req = 'INSERT INTO site (nomsite, localisation, niveau,
+																nbvoies, image, idtype)
 							VALUES ("'.$nomsite.'","'.$villesite.'","'.$cotation.'",
-										"'.$nbvoies.'","'.$photo.'","'.$type.'");';
+											"'.$nbvoies.'","'.$photo.'","'.$type.'");';
 			echo $req;
 			$res = $c->prepare($req);
 			$res->execute();
 			header("Location:index.php");
 		}
+
 	}
 }
 ?>

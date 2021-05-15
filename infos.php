@@ -61,7 +61,7 @@
 		$liste = new Requete($req);
 
 		$liste->executer();
-		$liste->afficherInfos();
+		$liste->afficher('infos');
 
 	} catch(PDOException $erreur) {
 		echo "<p>Erreur : ".$erreur->getMessage()."</p>\n";
@@ -79,7 +79,7 @@
 		$liste2 = new Requete($req2);
 
 		$liste2->executer();
-		$liste2->afficherCom();
+		$liste2->afficher("com");
 
 	} catch(PDOException $erreur) {
 		echo "<p>Erreur : ".$erreur->getMessage()."</p>\n";
@@ -87,7 +87,7 @@
 
 	//Affichage du formulaire.
 	$com = new Requete("", "");
-	$com->afficherFormCom();
+	$com->afficher("com_form");
 
   include "pied.inc.html";
 ?>

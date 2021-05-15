@@ -15,7 +15,7 @@
 		$req="SELECT idsite, nomsite, image FROM site ORDER BY nomsite";
 		$liste = new Requete($req);
 		$liste->executer();
-		$liste->afficherSite();
+		$liste->afficher("site");
 
 	} catch(PDOException $erreur) {
 		echo "<p>Erreur : ".$erreur->getMessage()."</p>\n";
